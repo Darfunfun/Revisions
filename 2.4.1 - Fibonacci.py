@@ -1,3 +1,5 @@
+import time
+
 n = int(input("Veuillez saisir un nombre : "))
 
 
@@ -8,6 +10,7 @@ def fibonacci(n):
     elif n == 1:
         return 1
     elif n >= 2:
-        return fibonacci(n) + fibonacci(n - 1)
+        print(time.time())
+        return fibonacci(n - 1) + fibonacci(n - 2)
 
 print(fibonacci(n))

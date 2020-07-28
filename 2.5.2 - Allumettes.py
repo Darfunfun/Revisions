@@ -14,6 +14,7 @@ print("\n")
 
 while allumettes > 0:
     print("Il reste {} allumettes : \n".format(allumettes))
+    # print(f"Il reste {allumettes} allumettes : \n")
     print("| " * allumettes)
     print("\n")
     
