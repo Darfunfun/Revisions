@@ -21,11 +21,22 @@ for ligne in plateau:
 def randomize(plateau):
     for l, ligne in enumerate(plateau):
         for c, case in enumerate(plateau):
-            plateau[l][c] = random.randint(0, 100)
+            plateau[l][c] = random.randint(0, 100)  # Ne remplit pas la derniere case de chaque lignes + comportement bizarre de "case"
+            print((f"l = {l}"))
+            print((f"ligne = {ligne}"))
+            print((f"c = {c}"))
+            print((f"case = {case}"))
             print(plateau)
             input()
 
 
 randomize(plateau)
 
-print(plateau)
+input("Nouveau plateau : ")
+
+
+for ligne in plateau:
+    for case in ligne:
+        print(case, " ", end='')
+    print("\n")
+
