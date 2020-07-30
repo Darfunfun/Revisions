@@ -7,3 +7,10 @@ def randomize(ma_liste):
         i += 1
 
 ma_liste = []
+# autre_liste = []
+randomize(ma_liste)
+print(ma_liste[:])
+
+a = ma_liste.index(min(ma_liste))
+print(a)
+
