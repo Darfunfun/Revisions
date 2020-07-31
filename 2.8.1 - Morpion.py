@@ -2,40 +2,69 @@ import copy
 
 
 def pions(tableau):
-    for i, ligne in enumerate(tableau):
-        for j, case in enumerate(tableau):
-            if case[j] == 0:
-                case[j] = '.'
-            elif case[j] == 1:
-                case[j] = 'x'
-            elif case[j] == 2:
-                case[j] = 'o'
+    for l, ligne in enumerate(tableau):
+        for b, bloc in enumerate(ligne):
+            if tableau[l][b] == 0:
+                tableau[l][b] = '.'
+            elif tableau[l][b] == 1:
+                tableau[l][b] = 'x'
+            elif tableau[l][b] == 2:
+                tableau[l][b] = 'o'
     print(tableau) # A suppr à la fin du programme
 
 
 def affichage(tableau):
-    for i, ligne in enumerate(tableau):
-        for j, case in enumerate(tableau):
-            print(case[j], " ", end='')
+    for l, ligne in enumerate(tableau):
+        for b, bloc in enumerate(ligne):
+            print(tableau[l][b], " ", end='')
         print("\n")
 
 
 def verif_match_nul(tableau):
-    for i, ligne in enumerate(tableau):
-        for j, case in enumerate(tableau):
-            if case[j] == 0:
-                # print(f"case[j] = {case[j]}")
+    for l, ligne in enumerate(tableau):
+        for b, bloc in enumerate(ligne):
+            if tableau[l][b] == 0:
+                # print(f"tableau[l][b] = {tableau[l][b]}")
                 return True
             else : 
-                #print(f"case[pas normal] = {case[j]}")
+                #print(f"bloc[pas normal] = {tableau[l][b]}")
                 return False
+
+
+def poser_pion(tableau):
+    """coordonnéesX = 0
+    coordonnéesY = 0
+    while tableau[l][b] != 0:
+    """
+    coordonneesX = int(input("Veuillez entrer la LIGNE où vous souhaitez poser votre pion : "))
+    coordonneesY = int(input("Veuillez entrer la COLONNE où vous souhaitez poser votre pion : "))
+
+    print(f"Coordonnées X = {coordonneesX}")
+    print(f"Coordonnées Y = {coordonneesY}")
+    print(f"Tableau = {tableau}")
+
+    tableau[coordonneesX][coordonneesY] = 2 # Ne ressort rien 
+
+    """
+    for l, ligne in enumerate(tableau):
+        for b, bloc in enumerate(ligne):
+            #while tableau[l][b] != 0:
+            tableau[coordonnéesX][coordonnéesY] = 1
+            print(tableau[l][b], " ", end='')
+            print("OK")
+            print(f"Tableau = {tableau}")
+        print("\n")
+    """
+
+
+
 
 
 tableau = [[0]*3]*3
 tableau_print = copy.deepcopy(tableau)
 
 print(tableau) # A suppr à la fin du programme
-print(f"tableau-print -> {tableau_print}") # A suppr
+print(f"tableau_print -> {tableau_print}") # A suppr
 
 verif_match_nul(tableau)
 
@@ -47,5 +76,6 @@ while jeu:
     pions(tableau_print)
     affichage(tableau_print)
     jeu = verif_match_nul(tableau)
+    poser_pion(tableau)
 
 
