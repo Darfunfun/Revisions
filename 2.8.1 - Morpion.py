@@ -32,20 +32,38 @@ def verif_match_nul(tableau):
 
 
 def poser_pion(tableau):
-    """coordonnéesX = 0
+
+    pose = 1
+    x = int(input("Veuillez entrer la LIGNE où vous souhaitez poser votre pion : "))
+    y = int(input("Veuillez entrer la COLONNE où vous souhaitez poser votre pion : "))
+    
+
+    for l, ligne in enumerate(tableau):
+        for c, case in enumerate(ligne):
+            if tableau[l][c] == tableau[x][y]:          # Pose JUSQU'A l'emplacement choisi... Pourquoi ?
+                #print(tableau)
+                print("Pose en cours...")
+                tableau[l][c] = pose
+            else:
+                print("Erreur")
+                #print(f"Cas 2 : {tableau[l][c]}, avec l = {l}, ligne = {ligne}, c = {c} et case = {case} \n")
+
+
+
+    """
+    coordonnéesX = 0
     coordonnéesY = 0
     while tableau[l][b] != 0:
-    """
+    
     coordonneesX = int(input("Veuillez entrer la LIGNE où vous souhaitez poser votre pion : "))
     coordonneesY = int(input("Veuillez entrer la COLONNE où vous souhaitez poser votre pion : "))
 
     print(f"Coordonnées X = {coordonneesX}")
     print(f"Coordonnées Y = {coordonneesY}")
     print(f"Tableau = {tableau}")
-
+    
     tableau[coordonneesX][coordonneesY] = 2 # Ne ressort rien 
 
-    """
     for l, ligne in enumerate(tableau):
         for b, bloc in enumerate(ligne):
             #while tableau[l][b] != 0:
@@ -59,8 +77,12 @@ def poser_pion(tableau):
 
 
 
-
-tableau = [[0]*3]*3
+tableau = [[0] * 3 for i in range(3)]
+""" Equivaut à :
+tableau = []
+for i in range(3):
+    tableau.append([0] * 3)
+"""
 tableau_print = copy.deepcopy(tableau)
 
 print(tableau) # A suppr à la fin du programme
@@ -73,9 +95,10 @@ jeu = True
 
 # Modification et verification à faire sur "tableau". Traduire ensuite les pions sur "tableau_print"
 while jeu:
+    poser_pion(tableau)
+    jeu = verif_match_nul(tableau)
     pions(tableau_print)
     affichage(tableau_print)
-    jeu = verif_match_nul(tableau)
-    poser_pion(tableau)
+    print(tableau)
 
 
