@@ -1,78 +1,49 @@
 import copy
 
 
-def pions(tableau):
-    for l, ligne in enumerate(tableau):
-        for b, bloc in enumerate(ligne):
-            if tableau[l][b] == 0:
-                tableau[l][b] = '.'
-            elif tableau[l][b] == 1:
-                tableau[l][b] = 'x'
-            elif tableau[l][b] == 2:
-                tableau[l][b] = 'o'
-    print(tableau) # A suppr à la fin du programme
+def convert_pions(tableau):
+    for ligne in tableau:
+        for bloc in ligne:
+            if ligne[bloc] == 1:
+                case = 'x'
+            elif ligne[bloc] == 2:
+                case = 'o'
+            else:
+                case = '.'
 
 
+# Fonction OK
 def affichage(tableau):
-    for l, ligne in enumerate(tableau):
-        for b, bloc in enumerate(ligne):
-            print(tableau[l][b], " ", end='')
+    for ligne in tableau:
+        for bloc in ligne:
+            print(ligne[bloc], " ", end='')
         print("\n")
 
 
+# Fonction OK
 def verif_match_nul(tableau):
-    for l, ligne in enumerate(tableau):
-        for b, bloc in enumerate(ligne):
-            if tableau[l][b] == 0:
-                # print(f"tableau[l][b] = {tableau[l][b]}")
+    for ligne in tableau:
+        for bloc in ligne:
+            if ligne[bloc] == 0:
+                print("True")
                 return True
             else : 
-                #print(f"bloc[pas normal] = {tableau[l][b]}")
+                print("False")
                 return False
 
 
 def poser_pion(tableau):
 
     pose = 1
-    x = int(input("Veuillez entrer la LIGNE où vous souhaitez poser votre pion : "))
-    y = int(input("Veuillez entrer la COLONNE où vous souhaitez poser votre pion : "))
+    ligne = int(input("Veuillez entrer la LIGNE où vous souhaitez poser votre pion : "))
+    colonne = int(input("Veuillez entrer la COLONNE où vous souhaitez poser votre pion : "))
+
+    print(ligne)
+    print(colonne)
     
-
-    for l, ligne in enumerate(tableau):
-        for c, case in enumerate(ligne):
-            if tableau[l][c] == tableau[x][y]:          # Pose JUSQU'A l'emplacement choisi... Pourquoi ?
-                #print(tableau)
-                print("Pose en cours...")
-                tableau[l][c] = pose
-            else:
-                print("Erreur")
-                #print(f"Cas 2 : {tableau[l][c]}, avec l = {l}, ligne = {ligne}, c = {c} et case = {case} \n")
-
-
-
-    """
-    coordonnéesX = 0
-    coordonnéesY = 0
-    while tableau[l][b] != 0:
-    
-    coordonneesX = int(input("Veuillez entrer la LIGNE où vous souhaitez poser votre pion : "))
-    coordonneesY = int(input("Veuillez entrer la COLONNE où vous souhaitez poser votre pion : "))
-
-    print(f"Coordonnées X = {coordonneesX}")
-    print(f"Coordonnées Y = {coordonneesY}")
-    print(f"Tableau = {tableau}")
-    
-    tableau[coordonneesX][coordonneesY] = 2 # Ne ressort rien 
-
-    for l, ligne in enumerate(tableau):
-        for b, bloc in enumerate(ligne):
-            #while tableau[l][b] != 0:
-            tableau[coordonnéesX][coordonnéesY] = 1
-            print(tableau[l][b], " ", end='')
-            print("OK")
-            print(f"Tableau = {tableau}")
-        print("\n")
-    """
+    for l in tableau:
+        for bloc in l:
+            tableau[ligne][colonne] = pose
 
 
 
@@ -83,22 +54,16 @@ tableau = []
 for i in range(3):
     tableau.append([0] * 3)
 """
-tableau_print = copy.deepcopy(tableau)
 
-print(tableau) # A suppr à la fin du programme
-print(f"tableau_print -> {tableau_print}") # A suppr
-
-verif_match_nul(tableau)
+print(f"Tableau de base : {tableau}") # A suppr à la fin du programme
 
 jeu = True
 
 
-# Modification et verification à faire sur "tableau". Traduire ensuite les pions sur "tableau_print"
+# Modification et verification à faire sur "tableau". Traduire ensuite les pions avec convert_pions 
 while jeu:
     poser_pion(tableau)
     jeu = verif_match_nul(tableau)
-    pions(tableau_print)
-    affichage(tableau_print)
+    convert_pions(tableau)
+    affichage(tableau)
     print(tableau)
-
-
