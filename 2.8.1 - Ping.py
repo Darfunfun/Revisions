@@ -58,19 +58,12 @@ def jeu_pion(plateau, i, j):
 
 
 
-plateau = [[True]*n for i in range(m)]
-
-
-
-
-
-
 
 n, m = return_valeur()
 plateau = construction_du_plateau(n, m)
 affichage(plateau)
 
-while range(4):    
+while True:    
     i, j = coordonnees_pions(n, m)
     jeu_pion(plateau, i, j)
     affichage(plateau)
