@@ -11,8 +11,9 @@ def affichage(plateau):
                 case = 'o'
             else:
                 case = '.'
-            print(case, ' ', end='')
+            print(case, end=' ')
         print("\n")
+
 
 
 def au_moins_une_case_est_vide(plateau):
@@ -25,24 +26,19 @@ def au_moins_une_case_est_vide(plateau):
     return continuer
 
 
+
 def poser_pion(plateau, joueur):
-
-    pion_ligne = int(input("Selectionnez une LIGNE : "))
-    pion_colonne = int(input("Selectionnez une COLONNE : "))
-    
-
-    #while (pion_ligne < 0 or pion_ligne > 2) or (pion_colonne < 0 or pion_colonne > 2):  
-    while not ((0 >= pion_ligne >= 2) and (0 >= pion_colonne >= 2)) and plateau[pion_ligne][pion_colonne] != 0:
-        print("Veuillez entrer des coordonnées valides ! \n")
+    while True:
         pion_ligne = int(input("Selectionnez une LIGNE : "))
         pion_colonne = int(input("Selectionnez une COLONNE : "))
+        if ((0 <= pion_ligne <= 2) and (0 <= pion_colonne <= 2)) and plateau[pion_ligne][pion_colonne] == 0:
+            plateau[pion_ligne][pion_colonne] = joueur
+            break
+        print("Veuillez entrer des coordonnées valides ! \n")
 
-
-    plateau[pion_ligne][pion_colonne] = joueur
 
 
 def check_victoire(plateau, joueur):
-    
     for ligne in range(len(plateau)):
         if plateau[ligne][0] == joueur and plateau[ligne][1] == joueur and plateau[ligne][2] == joueur:
             print("Alignement Horizontal !!")
@@ -66,36 +62,31 @@ def check_victoire(plateau, joueur):
 
 
 
+
 plateau = [[0]*3 for i in range(3)]
 affichage(plateau)
 joueur1 = 1
 joueur2 = 2
 
+
 def main():
-        
+    au_tour_de_x = True
+
     while True:
+        if au_tour_de_x:
+            joueur = joueur1
+            print("Au tour de X")
+        else:
+            joueur = joueur2
+            print("Au tour de O")
 
-        print("Au tour de X")
-        poser_pion(plateau, joueur1)
+        poser_pion(plateau, joueur)
         affichage(plateau)
-        if check_victoire(plateau, joueur1):
-            print("Victoire du Joueur 1 !")
+        if check_victoire(plateau, joueur):
+            print("Victoire du Joueur", int(not au_tour_de_x) + 1) # Bool -> int -> Ajout de 1 pour donner 1 ou 2 (joueur)
             break
         
-        continuer = au_moins_une_case_est_vide(plateau)
-        if continuer == False:
-            print("Match nul !")
-            break
-
-        print("Au tour de O")
-        poser_pion(plateau, joueur2)
-        affichage(plateau)
-        if check_victoire(plateau, joueur2):
-            print("Victoire du Joueur 2 !")
-            break
-        
-        continuer = au_moins_une_case_est_vide(plateau)
-        if continuer == False:
+        if not au_moins_une_case_est_vide(plateau):
             print("Match nul !")
             break
     
