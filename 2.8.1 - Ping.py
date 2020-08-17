@@ -11,8 +11,10 @@ def return_valeur():
     return n, m
 
 
+
 def construction_du_plateau(n, m):
     return [[True]*n for i in range(m)]
+
 
 
 def affichage(plateau):
@@ -26,6 +28,7 @@ def affichage(plateau):
         print("\n")
 
 
+
 def coordonnees_pions(n, m):
     i = j = -1
 
@@ -36,14 +39,13 @@ def coordonnees_pions(n, m):
     return i - 1, j - 1
 
 
+
 def jeu_pion(plateau, i, j):
-    """if plateau[i][j] == plateau[0][0] or plateau[i][j] == plateau[3][0] or plateau[i][j] == plateau[0][3] or plateau[i][j] == plateau[3][3]:
-        
-
-    elif plateau[i][j] == plateau[1][0] or plateau[i][j] == plateau[2][0] or plateau[i][j] == plateau[0][1] or plateau[i][j] == plateau[3][1] or plateau[i][j] == plateau[0][2] or plateau[i][j] == plateau[3][2] or plateau[i][j] == plateau[1][3] or plateau[i][j] == plateau[2][3]:
-        pass
-
-    else:"""
+    """
+    Deux erreurs persistent : 
+    - Impossible de poser en [4][4] (out of range)
+    - Les pions de l'autre côté du plateau change aussi (à cause des index negatifs), et je n'arrive pas à empecher ça (2.8.1 - Ping v2.py est une tentative mais rien à faire)
+    """
 
     plateau[i - 1][j - 1] = not plateau[i - 1][j - 1]
     plateau[i][j - 1] = not plateau[i][j - 1]
@@ -58,6 +60,38 @@ def jeu_pion(plateau, i, j):
 
 
 
+# Fonction OK
+def check_victoire(plateau):
+    for ligne in plateau:
+        for case in ligne:
+            if case == False:
+                print("Toutes les cases sont noires !")
+                return True
+                # victoire = True
+                # break
+            else:
+                print("Il reste des cases blanches !")
+                return False
+                # victoire = False
+                # break
+
+
+
+# Fonction OK
+def continuer_la_partie():
+    vote_du_joueur = int(input("Voulez-vous continuer la partie ? \n1 = OUI, 0 = NON : "))
+    vote_du_joueur = bool(vote_du_joueur)
+    if vote_du_joueur == True:
+        print("Aller, on continue, courage !")
+        return True
+    elif vote_du_joueur == False:
+        print("Arret de la partie, rententez la prochaine fois !")
+        return False
+    else:
+        print("GROSSE ERREUR")
+
+
+
 
 n, m = return_valeur()
 plateau = construction_du_plateau(n, m)
@@ -67,6 +101,5 @@ while True:
     i, j = coordonnees_pions(n, m)
     jeu_pion(plateau, i, j)
     affichage(plateau)
-
-
-print(plateau)
+    check_victoire(plateau)
+    #continuer = continuer_la_partie()
