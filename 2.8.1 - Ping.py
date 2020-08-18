@@ -47,6 +47,14 @@ def jeu_pion(plateau, i, j):
     - Les pions de l'autre côté du plateau change aussi (à cause des index negatifs), et je n'arrive pas à empecher ça (2.8.1 - Ping v2.py est une tentative mais rien à faire)
     """
 
+    for ligne in (j - 1, j, j + 1):
+        for colonne in (i - 1, i, i + 1):
+            if ligne == colonne == 0:
+                continue
+            if 0 <= ligne < len(plateau) and 0 <= colonne < len(plateau):
+                plateau[j + ligne][i + colonne] = not plateau[j + ligne][i + colonne]
+
+    """
     plateau[i - 1][j - 1] = not plateau[i - 1][j - 1]
     plateau[i][j - 1] = not plateau[i][j - 1]
     plateau[i + 1][j - 1] = not plateau[i + 1][j - 1]
@@ -57,6 +65,7 @@ def jeu_pion(plateau, i, j):
     plateau[i - 1][j + 1] = not plateau[i - 1][j + 1]
     plateau[i][j + 1] = not plateau[i][j + 1]
     plateau[i + 1][j + 1] = not plateau[i + 1][j + 1]
+    """
 
 
 
