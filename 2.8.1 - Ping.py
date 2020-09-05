@@ -3,10 +3,11 @@ def return_valeur():
     n = m = -1
 
     while n < 0 or m < 0:
-        if n < 0 or m < 0:
-            print("Les nombres ne sont pas positifs !")
         n = int(input("Veuillez entrer le nombre de colonne du plateau : "))
         m = int(input("Veuillez entrer le nombre de lignes du plateau : "))
+
+        if n < 0 or m < 0:
+            print("Les nombres ne sont pas positifs !")
     
     return n, m
 
@@ -46,13 +47,14 @@ def jeu_pion(plateau, i, j):
     - Impossible de poser en [4][4] (out of range)
     - Les pions de l'autre côté du plateau change aussi (à cause des index negatifs), et je n'arrive pas à empecher ça (2.8.1 - Ping v2.py est une tentative mais rien à faire)
     """
-
+    """
     for ligne in (j - 1, j, j + 1):
         for colonne in (i - 1, i, i + 1):
             if ligne == colonne == 0:
                 continue
             if 0 <= ligne < len(plateau) and 0 <= colonne < len(plateau):
                 plateau[j + ligne][i + colonne] = not plateau[j + ligne][i + colonne]
+    """
 
     """
     plateau[i - 1][j - 1] = not plateau[i - 1][j - 1]

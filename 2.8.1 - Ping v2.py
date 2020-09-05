@@ -42,9 +42,27 @@ def coordonnees_pions(n, m):
     return i, j
 
 
-# Fonction PAS OK
+# Fonction PAS OK DU TOUT
 def jeu_pion(plateau, i, j):
     
+    """
+    for ligne in (j - 1, j, j + 1):
+        for colonne in (i - 1, i, i + 1):
+            if ligne == colonne == 0:
+                continue
+            if 0 <= ligne < len(plateau) and 0 <= colonne < len(plateau):
+                plateau[j + ligne][i + colonne] = not plateau[j + ligne][i + colonne]
+    """
+
+    """
+    for l, ligne in enumerate(plateau):
+        # for c, case in enumerate(plateau):
+        if l < 0 or l > len(plateau):
+            continue
+        else:
+            # Full code
+
+
     if plateau[i][j] == plateau[0][0]:
         plateau[i + 1][j] = not plateau[i + 1]
         plateau[i][j + 1] = not plateau[i][j + 1]
@@ -65,8 +83,8 @@ def jeu_pion(plateau, i, j):
         plateau[i][j - 1] = not plateau[i][j - 1]
         plateau[i + 1][j - 1] = not plateau[i + 1][j - 1]
 
-
-    """
+        
+    
     plateau[i - 1][j - 1] = not plateau[i - 1][j - 1]
     plateau[i][j - 1] = not plateau[i][j - 1]
     plateau[i + 1][j - 1] = not plateau[i + 1][j - 1]
