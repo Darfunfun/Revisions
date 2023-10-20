@@ -34,7 +34,7 @@ randomize(plateau)
 
 input("Nouveau plateau : ")
 
-
+# boucle principale
 for ligne in plateau:
     for case in ligne:
         print(case, " ", end='')
